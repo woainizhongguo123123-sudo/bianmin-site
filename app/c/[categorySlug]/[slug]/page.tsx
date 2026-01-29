@@ -19,13 +19,13 @@ export default async function PostPage({
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-10">
-      <Link href={/c/} className="text-sm text-slate-600 hover:underline">
+      <Link href={`/c/${categorySlug}`} className="text-sm text-slate-600 hover:underline">
         ← 返回栏目
       </Link>
 
       <h1 className="mt-4 text-3xl font-bold text-slate-900">{meta.title}</h1>
       <div className="mt-2 text-sm text-slate-500">
-        {meta.updated ? 更新： : "更新：未标注"}
+        {meta.updated ? `更新：${meta.updated}` : "更新：未标注"}
       </div>
 
       <article

@@ -1,19 +1,30 @@
 import Link from "next/link";
 import { getCategories, getPostsByCategory } from "../../../lib/content";
 
+type CategoryLite = { categorySlug: string };
+type PostMetaLite = {
+  slug: string;
+  title: string;
+  summary?: string;
+  updated?: string;
+  category?: string;
+  categorySlug: string;
+};
+
 export function generateStaticParams() {
-  return getCategories().map((c) => ({ categorySlug: c.categorySlug }));
+  return (getCategories() as CategoryLite[]).map(({ categorySlug }) => ({
+    categorySlug,
+  }));
 }
 
 export default async function CategoryPage({
   params,
 }: {
-  params: Promise<{ categorySlug: string }> | { categorySlug: string };
+  params: Promise<{ categorySlug: string }>;
 }) {
-  const p = await Promise.resolve(params);
-  const categorySlug = p.categorySlug;
+  const { categorySlug } = await params;
 
-  const posts = getPostsByCategory(categorySlug);
+  const posts = getPostsByCategory(categorySlug) as PostMetaLite[];
   const title = posts[0]?.category ?? categorySlug;
 
   return (
@@ -23,6 +34,7 @@ export default async function CategoryPage({
       </Link>
 
       <h1 className="mt-4 text-2xl font-bold text-slate-900">{title}</h1>
+      <p className="mt-2 text-sm text-slate-600">选择条目查看详情（内容会持续更新与补充）。</p>
 
       {posts.length === 0 ? (
         <div className="mt-6 rounded-xl border bg-white p-5 text-sm text-slate-600">
@@ -32,18 +44,17 @@ export default async function CategoryPage({
         </div>
       ) : (
         <ul className="mt-6 space-y-3">
-          {posts.map((p) => (
-            <li key={p.slug} className="rounded-xl border bg-white p-5 hover:bg-slate-50">
-              <Link
-                href={`/c/${p.categorySlug}/${p.slug}`}
-                className="text-base font-semibold text-slate-900 hover:underline"
-              >
-                {p.title}
+          {posts.map(({ slug, title, categorySlug: cSlug, updated, summary }) => (
+            <li key={slug} className="rounded-xl border bg-white p-5 hover:bg-slate-50">
+              <Link href={`/c/${cSlug}/${slug}`} className="text-base font-semibold text-slate-900 hover:underline">
+                {title}
               </Link>
+
               <div className="mt-1 text-xs text-slate-500">
-                {p.updated ? `更新：${p.updated}` : "更新：未标注"}
+                {updated ? `更新：${updated}` : "更新：未标注"}
               </div>
-              {p.summary ? <p className="mt-2 text-sm text-slate-600">{p.summary}</p> : null}
+
+              {summary ? <p className="mt-2 text-sm text-slate-600">{summary}</p> : null}
             </li>
           ))}
         </ul>
