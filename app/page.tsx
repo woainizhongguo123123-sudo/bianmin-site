@@ -1,6 +1,20 @@
 import Link from "next/link";
 import { getAllPostsMeta, getCategories } from "../lib/content";
 
+type PostMetaLite = {
+  slug: string;
+  title: string;
+  summary?: string;
+  updated?: string;
+  category?: string;
+  categorySlug: string;
+};
+
+type CategoryLite = {
+  categorySlug: string;
+  name: string;
+};
+
 const CATEGORY_DESC: Record<string, string> = {
   work: "劳动合同与灵活就业的现实建议：少踩坑、少吃亏、可执行。",
   education: "教育层级与分流路径概览；学习方法与自学资源的实用用法。",
@@ -8,8 +22,8 @@ const CATEGORY_DESC: Record<string, string> = {
 };
 
 export default function HomePage() {
-  const categories = getCategories();
-  const latest = getAllPostsMeta().slice(0, 9);
+  const categories = getCategories() as CategoryLite[];
+  const latest = (getAllPostsMeta() as PostMetaLite[]).slice(0, 9);
 
   return (
     <main className="min-h-screen bg-white">
@@ -48,17 +62,17 @@ export default function HomePage() {
           <p className="mt-1 text-sm text-slate-600">以问题为导向组织内容：每条尽量做到“看完能用”。</p>
 
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((c) => (
+            {categories.map(({ categorySlug, name }) => (
               <Link
-                key={c.categorySlug}
-                href={`/c/${c.categorySlug}`}
+                key={categorySlug}
+                href={`/c/${categorySlug}`}
                 className="group rounded-xl border bg-white p-5 hover:border-slate-300 hover:bg-slate-50"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="text-base font-semibold text-slate-900">{c.name}</div>
+                    <div className="text-base font-semibold text-slate-900">{name}</div>
                     <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                      {CATEGORY_DESC[c.categorySlug] ?? "进入栏目查看相关便民内容与条目。"}
+                      {CATEGORY_DESC[categorySlug] ?? "进入栏目查看相关便民内容与条目。"}
                     </p>
                   </div>
                   <div className="mt-0.5 text-slate-400 group-hover:text-slate-600">→</div>
@@ -74,34 +88,29 @@ export default function HomePage() {
           <p className="mt-1 text-sm text-slate-600">按更新时间倒序展示。</p>
 
           <ul className="mt-4 space-y-3">
-            {latest.map((p) => (
-              <li
-                key={`${p.categorySlug}-${p.slug}`}
-                className="rounded-xl border bg-white p-5 hover:bg-slate-50"
-              >
+            {latest.map(({ categorySlug, slug, title, updated, summary, category }) => (
+              <li key={`${categorySlug}-${slug}`} className="rounded-xl border bg-white p-5 hover:bg-slate-50">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
                     <Link
-                      href={`/c/${p.categorySlug}/${p.slug}`}
+                      href={`/c/${categorySlug}/${slug}`}
                       className="block truncate text-base font-semibold text-slate-900 hover:underline"
-                      title={p.title}
+                      title={title}
                     >
-                      {p.title}
+                      {title}
                     </Link>
 
                     <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
-                      <span className="rounded-full border bg-slate-50 px-2 py-0.5">{p.category}</span>
-                      <span>{p.updated ? `更新：${p.updated}` : "更新：未标注"}</span>
+                      <span className="rounded-full border bg-slate-50 px-2 py-0.5">{category ?? categorySlug}</span>
+                      <span>{updated ? `更新：${updated}` : "更新：未标注"}</span>
                     </div>
 
-                    {p.summary ? (
-                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{p.summary}</p>
-                    ) : null}
+                    {summary ? <p className="mt-2 text-sm leading-relaxed text-slate-600">{summary}</p> : null}
                   </div>
 
                   <div className="shrink-0">
                     <Link
-                      href={`/c/${p.categorySlug}/${p.slug}`}
+                      href={`/c/${categorySlug}/${slug}`}
                       className="inline-flex items-center rounded-lg border bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-100"
                     >
                       查看
