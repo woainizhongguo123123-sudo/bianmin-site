@@ -19,12 +19,6 @@ export default async function PostPage({
   return (
     <main className="site-main">
       <div className="container">
-        <nav className="top-nav" aria-label="站点导航">
-          <Link href="/" className="brand">
-            公天下
-          </Link>
-        </nav>
-
         <Link href={`/c/${categorySlug}`} className="page-link">
           返回栏目
         </Link>
@@ -36,7 +30,9 @@ export default async function PostPage({
         <h1 className="post-title">{meta.title}</h1>
         <div className="title-accent-line" aria-hidden="true" />
 
-        <article className="post-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <section className="post-shell">
+          <article className="post-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        </section>
       </div>
     </main>
   );

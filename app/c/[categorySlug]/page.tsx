@@ -29,12 +29,6 @@ export default async function CategoryPage({
   return (
     <main className="site-main">
       <div className="container">
-        <nav className="top-nav" aria-label="站点导航">
-          <Link href="/" className="brand">
-            公天下
-          </Link>
-        </nav>
-
         <Link href="/" className="page-link">
           返回首页
         </Link>
@@ -48,12 +42,17 @@ export default async function CategoryPage({
           <p>该栏目暂时没有文章。</p>
         ) : (
           <ul className="gov-list">
-            {posts.map(({ slug, title: postTitle, categorySlug: cSlug, updated }) => (
+            {posts.map(({ slug, title: postTitle, categorySlug: cSlug, updated }, index) => (
               <li key={slug} className="gov-item">
-                <Link href={`/c/${cSlug}/${slug}`}>
-                  <h2 className="gov-item-title">{postTitle}</h2>
-                </Link>
-                <div className="meta">{updated ? `更新：${updated}` : "更新：未标注"}</div>
+                <span className="gov-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <Link href={`/c/${cSlug}/${slug}`}>
+                    <h2 className="gov-item-title">{postTitle}</h2>
+                  </Link>
+                  <div className="meta">{updated ? `更新：${updated}` : "更新：未标注"}</div>
+                </div>
               </li>
             ))}
           </ul>
