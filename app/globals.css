@@ -1,26 +1,119 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-black: #000000;
+  --color-red: #ff0000;
+  --color-white: #ffffff;
+  --font-title: "STKaiti", "KaiTi", "Kaiti SC", "DFKai-SB", serif;
+  --font-body: "SimSun", "Songti SC", "Noto Serif SC", serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.site-body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  line-height: 1.65;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title-kaiti {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-red);
+}
+
+.site-shell {
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 0 1.25rem;
+}
+
+.page-divider {
+  border-bottom: 2px solid var(--color-black);
+}
+
+.red-dot {
+  color: var(--color-red);
+}
+
+.block-card {
+  border: 2px solid var(--color-black);
+  background: var(--color-white);
+  padding: 1.5rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.block-card:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.block-card:hover .card-accent {
+  color: var(--color-red);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-black);
+  background: var(--color-white);
+  padding: 0.15rem 0.65rem;
+  font-size: 0.82rem;
+}
+
+.article-content {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid var(--color-red);
+  padding-left: 0.6rem;
+  font-family: var(--font-title);
+  line-height: 1.3;
+}
+
+.article-content p,
+.article-content li {
+  margin: 0.85rem 0;
+}
+
+.article-content ul,
+.article-content ol {
+  padding-left: 1.4rem;
+}
+
+.article-content blockquote {
+  margin: 1rem 0;
+  border-left: 4px solid var(--color-black);
+  padding: 0.1rem 0 0.1rem 0.8rem;
+}
+
+.article-content a {
+  color: var(--color-red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
