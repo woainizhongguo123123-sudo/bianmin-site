@@ -1,5 +1,4 @@
 ﻿import type { Metadata } from "next";
-import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,13 +18,11 @@ export default function RootLayout({
           <div className="site-topline" aria-hidden="true" />
           <header className="global-header">
             <div className="container global-header-inner">
-              <Link href="/" className="global-brand">
-                公天下
-              </Link>
-              <p className="global-subtitle">便民信息与服务</p>
+              <p className="top-motto">四海皆兄弟</p>
             </div>
           </header>
           {children}
+          <p className="global-contact">联系我们：3686821438@qq.com</p>
         </div>
       </body>
     </html>
