@@ -16,8 +16,13 @@ export default function HomePage() {
   const categories = getCategories() as CategoryLite[];
 
   return (
-    <main className="site-main">
+    <main className="site-main home-main">
       <div className="container">
+        <section className="home-notice" aria-label="站点公告">
+          <p className="home-notice-title">四海皆兄弟</p>
+          <p className="home-notice-contact">联系我们：3686821438@qq.com</p>
+        </section>
+
         <header className="home-head">
           <h1 className="home-title">公天下</h1>
           <p className="home-subtitle">便民信息与服务</p>
