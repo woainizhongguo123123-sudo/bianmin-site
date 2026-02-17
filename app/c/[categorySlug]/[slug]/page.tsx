@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import LaborContractTemplateClient from "./labor-contract-template-client";
 import { getAllPostsMeta, getPostHtml } from "../../../../lib/content";
 
 type StaticParam = { categorySlug: string; slug: string };
@@ -15,6 +16,8 @@ export default async function PostPage({
 }) {
   const { categorySlug, slug } = await params;
   const { meta, contentHtml } = await getPostHtml(categorySlug, slug);
+
+  const isLaborTemplatePage = categorySlug === "work" && slug === "labor-contract-template";
 
   return (
     <main className="site-main">
@@ -33,6 +36,8 @@ export default async function PostPage({
         <section className="post-shell">
           <article className="post-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </section>
+
+        {isLaborTemplatePage ? <LaborContractTemplateClient /> : null}
       </div>
     </main>
   );

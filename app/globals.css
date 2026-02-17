@@ -421,3 +421,96 @@ small {
   border: 1px solid var(--c-text);
   background: var(--c-bg);
 }
+
+.contract-tool {
+  margin-top: 18px;
+}
+
+.contract-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.contract-note {
+  margin: 0;
+}
+
+.contract-warning {
+  margin-top: 8px;
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.contract-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 840px) {
+  .contract-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contract-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contract-field input,
+.contract-field select {
+  width: 100%;
+  border: 1px solid var(--c-text);
+  background: var(--c-bg);
+  color: var(--c-text);
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: var(--font-body);
+}
+
+.contract-field input:focus,
+.contract-field select:focus {
+  outline: 1px solid var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+.contract-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contract-btn {
+  width: fit-content;
+  min-width: 280px;
+  border: 1px solid var(--c-text);
+  background: var(--c-bg);
+  color: var(--c-text);
+  padding: 9px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.contract-btn:hover:not(:disabled) {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+.contract-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.contract-message {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.72);
+}
