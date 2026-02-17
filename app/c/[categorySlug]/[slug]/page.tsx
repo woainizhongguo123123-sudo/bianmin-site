@@ -6,24 +6,10 @@ import { getAllPostsMeta, getPostHtml } from "../../../../lib/content";
 
 type StaticParam = { categorySlug: string; slug: string };
 
-function formatLawBlocks(raw: string) {
-  const lines = raw.replace(/\r/g, "").split("\n").map((line) => line.trim()).filter(Boolean);
-
-  return lines.map((line, index) => {
-    if (index === 0) {
-      return { type: "mainTitle" as const, text: line, key: `mt-${index}` };
-    }
-
-    if (/^第[一二三四五六七八九十百千万零〇0-9]+章/.test(line)) {
-      return { type: "chapter" as const, text: line, key: `ch-${index}` };
-    }
-
-    if (/^第[一二三四五六七八九十百千万零〇0-9]+条$/.test(line)) {
-      return { type: "article" as const, text: line, key: `ar-${index}` };
-    }
-
-    return { type: "paragraph" as const, text: line, key: `p-${index}` };
-  });
+function extractRenderedLawHtml(source: string) {
+  const style = source.match(/<style[\s\S]*?<\/style>/i)?.[0] ?? "";
+  const body = source.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? source;
+  return `${style}<div class="law-word-wrap">${body}</div>`;
 }
 
 export function generateStaticParams(): StaticParam[] {
@@ -42,11 +28,11 @@ export default async function PostPage({
   const isLaborTemplatePage = categorySlug === "work" && slug === "labor-contract-template";
   const isLaborLawPage = categorySlug === "work" && slug === "labor-law-fulltext";
 
-  let lawBlocks: ReturnType<typeof formatLawBlocks> = [];
+  let laborLawHtml = "";
   if (isLaborLawPage) {
-    const lawPath = path.join(process.cwd(), "content", "work", "labor-law-fulltext.txt");
-    const rawLaw = await readFile(lawPath, "utf-8");
-    lawBlocks = formatLawBlocks(rawLaw);
+    const lawPath = path.join(process.cwd(), "content", "work", "labor-law-fulltext.rendered.html");
+    const raw = await readFile(lawPath, "utf-8");
+    laborLawHtml = extractRenderedLawHtml(raw);
   }
 
   return (
@@ -65,39 +51,7 @@ export default async function PostPage({
 
         {isLaborLawPage ? (
           <section className="post-shell law-shell">
-            <article className="law-content" aria-label="劳动法全文">
-              {lawBlocks.map((block) => {
-                if (block.type === "mainTitle") {
-                  return (
-                    <h2 key={block.key} className="law-main-title">
-                      {block.text}
-                    </h2>
-                  );
-                }
-
-                if (block.type === "chapter") {
-                  return (
-                    <h3 key={block.key} className="law-chapter-title">
-                      {block.text}
-                    </h3>
-                  );
-                }
-
-                if (block.type === "article") {
-                  return (
-                    <h4 key={block.key} className="law-article-title">
-                      {block.text}
-                    </h4>
-                  );
-                }
-
-                return (
-                  <p key={block.key} className="law-paragraph">
-                    {block.text}
-                  </p>
-                );
-              })}
-            </article>
+            <article className="law-rendered" aria-label="劳动法全文" dangerouslySetInnerHTML={{ __html: laborLawHtml }} />
           </section>
         ) : (
           <section className="post-shell">

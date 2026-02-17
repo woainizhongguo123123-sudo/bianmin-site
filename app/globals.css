@@ -577,3 +577,24 @@ small {
   line-height: 2;
   font-weight: 400;
 }
+
+.law-shell {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.law-rendered {
+  font-family: var(--font-body);
+  color: var(--c-text);
+}
+
+.law-rendered .law-word-wrap {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.law-rendered p,
+.law-rendered div,
+.law-rendered span {
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif !important;
+}
