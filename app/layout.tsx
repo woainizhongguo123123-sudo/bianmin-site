@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "公天下 | 便民信息与服务",
   description: "围绕工作、教育、医疗的实用便民信息整理。",
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: [{ url: "/icon.svg?v=4", type: "image/svg+xml" }],
+    shortcut: "/icon.svg?v=4",
+    apple: "/icon.svg?v=4",
   },
 };
 
@@ -33,3 +33,4 @@ export default function RootLayout({
     </html>
   );
 }
+
