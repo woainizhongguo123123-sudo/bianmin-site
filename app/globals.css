@@ -598,3 +598,152 @@ small {
 .law-rendered span {
   font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif !important;
 }
+
+/* Homepage modern-governance refinement */
+.global-header-inner {
+  position: relative;
+  padding: 13px 0 15px;
+}
+
+.global-header-inner::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 68px;
+  height: 2px;
+  background: rgba(192, 0, 0, 0.7);
+}
+
+.top-motto {
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
+}
+
+.home-head {
+  border-radius: 8px;
+  padding: 38px 26px;
+}
+
+.home-title {
+  letter-spacing: 5px;
+}
+
+.home-subtitle {
+  margin-top: 14px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.home-nav-shell {
+  margin-top: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.86);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 16px 16px;
+}
+
+.home-section-title {
+  margin: 0 0 14px;
+  font-size: 21px;
+  letter-spacing: 1px;
+}
+
+.category-grid {
+  gap: 16px;
+}
+
+.category-entry {
+  border-radius: 10px;
+  padding: 14px 14px 12px;
+  overflow: hidden;
+}
+
+.category-entry-body {
+  position: relative;
+  min-height: 112px;
+}
+
+.category-text-layer,
+.category-icon-layer {
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.category-text-layer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.category-icon-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.entry-icon-circle {
+  display: inline-flex;
+  width: 70px;
+  height: 70px;
+  border-radius: 999px;
+  background: var(--c-accent);
+  color: var(--c-bg);
+  align-items: center;
+  justify-content: center;
+}
+
+.entry-icon-shape {
+  width: 34px;
+  height: 34px;
+}
+
+.category-entry:hover .category-text-layer,
+.category-entry:focus-visible .category-text-layer {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.category-entry:hover .category-icon-layer,
+.category-entry:focus-visible .category-icon-layer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.category-entry-foot {
+  margin-top: 8px;
+  padding-top: 9px;
+}
+
+.entry-mark {
+  transition: background-color 0.22s ease, width 0.22s ease;
+}
+
+.category-entry:hover .entry-mark,
+.category-entry:focus-visible .entry-mark {
+  width: 34px;
+}
+
+@media (hover: none) {
+  .category-icon-layer {
+    display: none;
+  }
+
+  .category-text-layer {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-nav-shell {
+    padding: 16px 12px 12px;
+  }
+
+  .home-head {
+    padding: 30px 16px;
+  }
+}
