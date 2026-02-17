@@ -514,3 +514,66 @@ small {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.72);
 }
+
+.contract-required {
+  margin-left: 4px;
+  color: var(--c-accent);
+  font-style: normal;
+}
+
+.contract-helper {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.contract-rule-list {
+  margin: 6px 0 0;
+  padding-left: 1.2em;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.law-shell {
+  margin-top: 20px;
+}
+
+.law-content {
+  font-family: var(--font-body);
+  color: var(--c-text);
+}
+
+.law-main-title {
+  margin: 0 0 18px;
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 34px;
+  line-height: 1.45;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.law-chapter-title {
+  margin: 26px 0 12px;
+  font-family: var(--font-title);
+  font-size: 24px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.law-article-title {
+  margin: 18px 0 8px;
+  font-family: var(--font-title);
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.law-paragraph {
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 2;
+  font-weight: 400;
+}
