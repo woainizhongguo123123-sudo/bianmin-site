@@ -38,8 +38,25 @@ export default async function PostPage({
   }
 
   if (isLearningResourcesPage) {
+    const learningResourcesStyles = `
+      .global-header,
+      .site-topline,
+      .global-contact {
+        display: none !important;
+      }
+
+      .site-main.learning-resources-main {
+        padding-top: 0 !important;
+      }
+
+      .learning-resources-header {
+        margin-top: 0 !important;
+      }
+    `;
+
     return (
       <main className="site-main learning-resources-main">
+        <style dangerouslySetInnerHTML={{ __html: learningResourcesStyles }} />
         <LearningResourcesGrid />
       </main>
     );
