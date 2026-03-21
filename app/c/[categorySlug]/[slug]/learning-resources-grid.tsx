@@ -12,13 +12,13 @@ const resources: Array<{
   {
     title: "图书馆",
     description: "海量书籍，免费下载",
-    href: "https://z-library.sk",
+    href: "https://zlib.ch",
     available: true,
   },
   {
     title: "思想补给站",
     description: "照亮人生，指引方向",
-    href: "https://www.marxists.org",
+    href: "https://www.marxists.org/chinese/index.html",
     available: true,
   },
   {
