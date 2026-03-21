@@ -37,6 +37,14 @@ export default async function PostPage({
     laborLawHtml = extractRenderedLawHtml(raw);
   }
 
+  if (isLearningResourcesPage) {
+    return (
+      <main className="learning-resources-main">
+        <LearningResourcesGrid />
+      </main>
+    );
+  }
+
   return (
     <main className="site-main">
       <div className="container">
@@ -58,7 +66,6 @@ export default async function PostPage({
         ) : (
           <section className="post-shell">
             <article className="post-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
-            {isLearningResourcesPage ? <LearningResourcesGrid /> : null}
           </section>
         )}
 

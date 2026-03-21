@@ -7,7 +7,7 @@
 
   --font-title: "KaiTi", "STKaiti", "Kaiti SC", "KaiTi_GB2312", "DFKai-SB", serif;
   --font-body: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK SC", "STSong", "SimSun", serif;
-  --font-xingti: "正字迹-邢体草书简体", cursive;
+  --font-xingti: "方正字迹-邢体草书简体", cursive;
   --font-kaiti: "KaiTi", "STKaiti", "Kaiti SC", "KaiTi_GB2312", "DFKai-SB", serif;
   --font-fz-song: "FZSong", "方正宋体", "SimSun", serif;
 
@@ -839,5 +839,176 @@ small {
 
   .home-head {
     padding: 30px 16px;
+  }
+}
+
+/* 学习资源导航专用样式 */
+.learning-resources-main {
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 240, 240, 0.9) 100%
+  );
+}
+
+.learning-resources-fullpage {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 标题栏 - 顶头条状红栏 */
+.learning-resources-header {
+  background: #c00000;
+  padding: 30px 20px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.learning-resources-title {
+  font-family: var(--font-xingti);
+  font-size: 2.8rem;
+  color: #ffd700;
+  margin: 0;
+  line-height: 1;
+  font-weight: normal;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 增强版网格布局 */
+.resources-grid-enhanced {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  max-width: 1400px;
+  margin: 60px auto;
+  padding: 0 40px;
+  flex: 1;
+  align-content: center;
+}
+
+/* 资源卡片 - 更匀称的布局 */
+.resource-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 40px 30px;
+  background: white;
+  text-align: center;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.resource-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.resource-link:hover .resource-card,
+.resource-link:focus-visible .resource-card {
+  border-color: #c00000;
+  background: rgba(192, 0, 0, 0.02);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(192, 0, 0, 0.15);
+}
+
+.resource-title {
+  font-family: var(--font-kaiti);
+  font-size: 1.8rem;
+  margin: 0 0 20px 0;
+  color: #111;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.resource-description {
+  font-family: var(--font-fz-song);
+  font-size: 1rem;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.75);
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+.coming-soon {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+  font-family: var(--font-body);
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .resources-grid-enhanced {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    padding: 0 30px;
+  }
+  
+  .learning-resources-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .resources-grid-enhanced {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 600px;
+    padding: 0 20px;
+    margin: 40px auto;
+  }
+  
+  .learning-resources-header {
+    padding: 25px 15px;
+  }
+  
+  .learning-resources-title {
+    font-size: 2.2rem;
+  }
+  
+  .resource-card {
+    padding: 35px 25px;
+    min-height: 200px;
+  }
+  
+  .resource-title {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resources-grid-enhanced {
+    gap: 24px;
+    padding: 0 15px;
+  }
+  
+  .learning-resources-title {
+    font-size: 1.8rem;
+  }
+  
+  .resource-card {
+    padding: 30px 20px;
+    min-height: 180px;
+  }
+  
+  .resource-title {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+  
+  .resource-description {
+    font-size: 0.9rem;
   }
 }

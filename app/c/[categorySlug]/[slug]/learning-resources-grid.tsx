@@ -90,13 +90,13 @@ function ResourceCard({ title, description, href, available }: ResourceCardProps
 
 export default function LearningResourcesGrid() {
   return (
-    <section className="learning-resources-shell" aria-label="学习资源导航">
+    <div className="learning-resources-fullpage">
       <LearningResourcesHeader />
-      <div className="resources-grid">
+      <div className="resources-grid-enhanced">
         {resources.map((resource, index) => (
           <ResourceCard key={`${resource.title}-${index}`} {...resource} />
         ))}
       </div>
-    </section>
+    </div>
   );
 }
