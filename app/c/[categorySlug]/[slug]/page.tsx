@@ -3,6 +3,7 @@ import path from "node:path";
 import Link from "next/link";
 import LaborContractTemplateClient from "./labor-contract-template-client";
 import LearningResourcesGrid from "./learning-resources-grid";
+import LearningResourcesPage from "./learning-resources-page";
 import { getAllPostsMeta, getPostHtml } from "../../../../lib/content";
 
 type StaticParam = { categorySlug: string; slug: string };
@@ -38,28 +39,7 @@ export default async function PostPage({
   }
 
   if (isLearningResourcesPage) {
-    return (
-      <>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              document.addEventListener('DOMContentLoaded', function() {
-                document.body.classList.add('learning-resources-page');
-              });
-            `,
-          }}
-        />
-        <style jsx global>{`
-          body.learning-resources-page .global-header,
-          body.learning-resources-page .site-topline {
-            display: none !important;
-          }
-        `}</style>
-        <div className="learning-resources-fullpage">
-          <LearningResourcesGrid />
-        </div>
-      </>
-    );
+    return <LearningResourcesPage />;
   }
 
   return (

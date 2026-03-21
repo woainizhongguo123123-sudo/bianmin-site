@@ -856,11 +856,7 @@ small {
   position: relative;
 }
 
-/* 隐藏学习资源导航页面的全局头部 */
-.site-root:has(.learning-resources-fullpage) .global-header,
-.site-root:has(.learning-resources-fullpage) .site-topline {
-  display: none !important;
-}
+/* 学习资源导航页面样式将在客户端组件中动态设置 */
 
 /* 标题栏 - 顶头条状红栏 */
 .learning-resources-header {
