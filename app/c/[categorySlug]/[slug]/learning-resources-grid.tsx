@@ -1,4 +1,7 @@
-﻿import type { ReactNode } from "react";
+﻿"use client";
+
+import type { ReactNode } from "react";
+import { useEffect } from "react";
 
 const resources: Array<{
   title: string;
@@ -30,27 +33,27 @@ const resources: Array<{
   },
   {
     title: "敬请期待",
-    description: "",
+    description: "敬请期待",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "",
+    description: "敬请期待",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "",
+    description: "敬请期待",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "",
+    description: "敬请期待",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "",
+    description: "敬请期待",
     available: false,
   },
 ];
@@ -89,10 +92,17 @@ function ResourceCard({ title, description, href, available }: ResourceCardProps
 }
 
 export default function LearningResourcesGrid() {
+  useEffect(() => {
+    document.body.classList.add("learning-resources-page");
+    return () => {
+      document.body.classList.remove("learning-resources-page");
+    };
+  }, []);
+
   return (
-    <div className="learning-resources-fullpage">
+    <div className="learning-resources-fullpage" aria-label="学习资源导航">
       <LearningResourcesHeader />
-      <div className="resources-grid-enhanced">
+      <div className="resources-grid">
         {resources.map((resource, index) => (
           <ResourceCard key={`${resource.title}-${index}`} {...resource} />
         ))}

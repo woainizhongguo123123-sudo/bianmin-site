@@ -1067,3 +1067,49 @@ body.learning-resources-page .learning-resources-header {
     font-size: 0.9rem;
   }
 }
+
+/* Learning resources overrides (fix header spacing + hide global header) */
+body.learning-resources-page .global-header,
+body.learning-resources-page .site-topline,
+body.learning-resources-page .global-contact {
+  display: none !important;
+}
+
+body.learning-resources-page .site-main {
+  padding-top: 0 !important;
+}
+
+body.learning-resources-page .learning-resources-header {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  z-index: auto !important;
+  margin: 0 0 24px !important;
+  border-radius: 4px !important;
+}
+
+body.learning-resources-page .learning-resources-fullpage {
+  width: min(var(--w-container), calc(100% - 40px));
+  margin: 0 auto 60px;
+}
+
+body.learning-resources-page .resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  body.learning-resources-page .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  body.learning-resources-page .resources-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,7 +3,6 @@ import path from "node:path";
 import Link from "next/link";
 import LaborContractTemplateClient from "./labor-contract-template-client";
 import LearningResourcesGrid from "./learning-resources-grid";
-import LearningResourcesClient from "./learning-resources-client";
 import { getAllPostsMeta, getPostHtml } from "../../../../lib/content";
 
 type StaticParam = { categorySlug: string; slug: string };
@@ -18,8 +17,6 @@ export function generateStaticParams(): StaticParam[] {
   const list = getAllPostsMeta() as StaticParam[];
   return list.map(({ categorySlug, slug }) => ({ categorySlug, slug }));
 }
-
-export const dynamic = 'force-dynamic'; // 禁用静态生成
 
 export default async function PostPage({
   params,
@@ -42,10 +39,9 @@ export default async function PostPage({
 
   if (isLearningResourcesPage) {
     return (
-      <>
-        <LearningResourcesClient />
+      <main className="site-main learning-resources-main">
         <LearningResourcesGrid />
-      </>
+      </main>
     );
   }
 
