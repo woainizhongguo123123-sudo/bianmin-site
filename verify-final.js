@@ -1,7 +1,6 @@
-// 最终验证脚本
 const http = require('http');
 
-console.log('🚀 正在验证学习资源导航页面...');
+console.log('🚀 最终验证学习资源导航页面修复...');
 console.log('等待服务器稳定...');
 
 setTimeout(() => {
@@ -11,7 +10,7 @@ setTimeout(() => {
     path: '/c/education/learning-resources-navigation',
     method: 'GET',
     headers: {
-      'User-Agent': 'OpenClaw-Final-Verification'
+      'User-Agent': 'OpenClaw-Final-Test/1.0'
     }
   };
 
@@ -24,53 +23,60 @@ setTimeout(() => {
     });
     
     res.on('end', () => {
-      console.log('✅ 页面获取完成');
       console.log('📋 分析页面内容...');
       
       // 检查关键元素
-      const hasGlobalHeader = data.includes('global-header');
-      const hasLearningResourcesHeader = data.includes('learning-resources-header');
-      const hasLearningResourcesFullpage = data.includes('learning-resources-fullpage');
-      const hasClientComponent = data.includes('LearningResourcesClient');
-      const hasCSSHasSelector = data.includes(':has(.learning-resources-fullpage)');
-      const hasLearningResourcesPageClass = data.includes('learning-resources-page');
+      const hasGlobalHeader = data.includes('class="global-header"');
+      const hasLearningResourcesHeader = data.includes('class="learning-resources-header"');
+      const hasLearningResourcesFullpage = data.includes('class="learning-resources-fullpage"');
+      const hasLearningResourcesClient = data.includes('learning-resources-client');
       
       console.log('\n🔍 检查结果:');
-      console.log(`1. 是否有global-header元素: ${hasGlobalHeader ? '是' : '否'}`);
+      console.log(`1. 是否有global-header元素: ${hasGlobalHeader ? '是（应该被隐藏）' : '否 ✅'}`);
       console.log(`2. 是否有learning-resources-header元素: ${hasLearningResourcesHeader ? '是 ✅' : '否 ❌'}`);
       console.log(`3. 是否有learning-resources-fullpage元素: ${hasLearningResourcesFullpage ? '是 ✅' : '否 ❌'}`);
-      console.log(`4. 是否有客户端组件: ${hasClientComponent ? '是 ✅' : '否 ❌'}`);
-      console.log(`5. 是否有:has() CSS选择器: ${hasCSSHasSelector ? '是 ✅' : '否'}`);
-      console.log(`6. 是否有learning-resources-page类: ${hasLearningResourcesPageClass ? '是 ✅' : '否'}`);
+      console.log(`4. 是否有learning-resources-client引用: ${hasLearningResourcesClient ? '是 ✅' : '否 ❌'}`);
       
-      // 检查CSS规则
-      const hasHideHeaderCSS = data.includes('display: none') && data.includes('global-header');
-      const hasAbsolutePositionCSS = data.includes('position:') && data.includes('learning-resources-header');
+      // 检查JavaScript是否包含
+      const hasUseEffect = data.includes('useEffect');
+      const hasConsoleLog = data.includes('console.log');
       
-      console.log(`7. 是否有隐藏头部的CSS: ${hasHideHeaderCSS ? '是 ✅' : '否'}`);
-      console.log(`8. 是否有绝对定位CSS: ${hasAbsolutePositionCSS ? '是 ✅' : '否'}`);
+      console.log('\n🔄 JavaScript检查:');
+      console.log(`1. 是否有useEffect: ${hasUseEffect ? '是 ✅' : '否'}`);
+      console.log(`2. 是否有console.log: ${hasConsoleLog ? '是 ✅' : '否'}`);
       
-      console.log('\n🎯 预期效果:');
-      console.log('   - 红色条栏直接顶头');
-      console.log('   - 没有"四海皆兄弟"头部');
-      console.log('   - 3×3匀称网格布局');
-      console.log('   - 后面五个矩形框只有一行"敬请期待"');
+      // 检查CSS样式
+      const hasInlineStyle = data.includes('textContent') || data.includes('createElement(\'style\')');
+      const hasImportant = data.includes('!important');
       
-      if (hasLearningResourcesHeader && hasLearningResourcesFullpage && hasClientComponent) {
-        console.log('\n✨ 所有技术组件都已就位！');
-        console.log('💡 请访问: http://localhost:3000/c/education/learning-resources-navigation');
-        console.log('💡 清除缓存: Ctrl+Shift+Delete');
-        console.log('💡 强制刷新: Ctrl+F5');
+      console.log('\n🎨 CSS检查:');
+      console.log(`1. 是否有内联样式: ${hasInlineStyle ? '是 ✅' : '否'}`);
+      console.log(`2. 是否有!important: ${hasImportant ? '是 ✅' : '否'}`);
+      
+      console.log('\n📝 总结:');
+      if (hasLearningResourcesClient && hasLearningResourcesHeader && hasLearningResourcesFullpage) {
+        console.log('✅ 页面结构正确，客户端组件已加载');
+        console.log('📱 请访问: http://localhost:3000/c/education/learning-resources-navigation');
+        console.log('\n🔄 验证步骤:');
+        console.log('1. 打开页面');
+        console.log('2. 按 F12 打开开发者工具');
+        console.log('3. 检查 Console 标签页是否有 ✅ 日志');
+        console.log('4. 检查 Elements 标签页查看DOM结构');
+        console.log('5. 检查 Styles 标签页查看应用的CSS');
+        console.log('\n💡 如果仍有问题:');
+        console.log('   1. 清除浏览器缓存 (Ctrl+Shift+Delete)');
+        console.log('   2. 强制刷新 (Ctrl+F5)');
+        console.log('   3. 检查控制台错误');
       } else {
-        console.log('\n⚠️  某些技术组件缺失，需要进一步调试。');
+        console.log('❌ 页面结构有问题，需要进一步调试');
       }
     });
   });
-
+  
   req.on('error', (error) => {
-    console.error('❌ 请求错误:', error.message);
-    console.log('💡 请确保开发服务器正在运行: npm run dev');
+    console.error('❌ 请求失败:', error.message);
+    console.log('💡 请确保服务器正在运行: npm run dev');
   });
-
+  
   req.end();
 }, 3000);
