@@ -9,7 +9,7 @@
   --font-body: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK SC", "STSong", "SimSun", serif;
   --font-xingti: "方正字迹-邢体草书简体", cursive;
   --font-kaiti: "KaiTi", "STKaiti", "Kaiti SC", "KaiTi_GB2312", "DFKai-SB", serif;
-  --font-fz-song: "FZSong", "方正宋体", "SimSun", serif;
+  --font-fz-song: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK SC", "STSong", "SimSun", serif;
 
   --w-container: 760px;
 
@@ -843,20 +843,16 @@ small {
 }
 
 /* 学习资源导航专用样式 */
-.learning-resources-main {
-  min-height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(240, 240, 240, 0.9) 100%
-  );
-}
-
 .learning-resources-fullpage {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 240, 240, 0.9) 100%
+  );
 }
 
 /* 标题栏 - 顶头条状红栏 */
@@ -866,6 +862,7 @@ small {
   text-align: center;
   width: 100%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0;
 }
 
 .learning-resources-title {
@@ -937,6 +934,10 @@ small {
   color: rgba(0, 0, 0, 0.75);
   line-height: 1.6;
   max-width: 90%;
+}
+
+.resource-description:empty {
+  display: none;
 }
 
 .coming-soon {

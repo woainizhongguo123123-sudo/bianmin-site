@@ -30,27 +30,27 @@ const resources: Array<{
   },
   {
     title: "敬请期待",
-    description: "敬请期待",
+    description: "",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "敬请期待",
+    description: "",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "敬请期待",
+    description: "",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "敬请期待",
+    description: "",
     available: false,
   },
   {
     title: "敬请期待",
-    description: "敬请期待",
+    description: "",
     available: false,
   },
 ];

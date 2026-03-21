@@ -39,9 +39,9 @@ export default async function PostPage({
 
   if (isLearningResourcesPage) {
     return (
-      <main className="learning-resources-main">
+      <div className="learning-resources-fullpage">
         <LearningResourcesGrid />
-      </main>
+      </div>
     );
   }
 
