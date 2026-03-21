@@ -59,7 +59,7 @@ export default function LearningResourcesClient() {
     console.log('✅ 已添加 learning-resources-page 类到 body');
     
     // 方法3：直接设置标题栏样式（三重保障）
-    const titleBar = document.querySelector('.learning-resources-header');
+    const titleBar = document.querySelector('.learning-resources-header') as HTMLElement;
     if (titleBar) {
       titleBar.style.position = 'fixed';
       titleBar.style.top = '0';
@@ -74,9 +74,9 @@ export default function LearningResourcesClient() {
     }
     
     // 方法4：直接隐藏头部（三重保障）
-    const header = document.querySelector('.global-header');
-    const topline = document.querySelector('.site-topline');
-    const contact = document.querySelector('.global-contact');
+    const header = document.querySelector('.global-header') as HTMLElement;
+    const topline = document.querySelector('.site-topline') as HTMLElement;
+    const contact = document.querySelector('.global-contact') as HTMLElement;
     
     if (header) {
       header.style.display = 'none';

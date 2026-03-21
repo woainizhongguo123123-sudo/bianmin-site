@@ -10,7 +10,7 @@ export default function LearningResourcesPage() {
     console.log('已添加 learning-resources-page 类到 body');
     
     // 确保标题栏样式
-    const titleBar = document.querySelector('.learning-resources-header');
+    const titleBar = document.querySelector('.learning-resources-header') as HTMLElement;
     if (titleBar) {
       titleBar.style.position = 'absolute';
       titleBar.style.top = '0';
