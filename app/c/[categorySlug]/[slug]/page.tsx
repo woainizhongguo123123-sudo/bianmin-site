@@ -19,6 +19,8 @@ export function generateStaticParams(): StaticParam[] {
   return list.map(({ categorySlug, slug }) => ({ categorySlug, slug }));
 }
 
+export const dynamic = 'force-dynamic'; // 禁用静态生成
+
 export default async function PostPage({
   params,
 }: {
@@ -42,9 +44,7 @@ export default async function PostPage({
     return (
       <>
         <LearningResourcesClient />
-        <div className="learning-resources-fullpage">
-          <LearningResourcesGrid />
-        </div>
+        <LearningResourcesGrid />
       </>
     );
   }
