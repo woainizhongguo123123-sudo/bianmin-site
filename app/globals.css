@@ -227,7 +227,7 @@ small {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   max-width: 1200px;
-  margin: 0 auto 60px;
+  margin: 80px auto 60px; /* 增加上边距，将九个栏目整体下移 */
 }
 
 .resource-card {
@@ -1111,7 +1111,7 @@ body.learning-resources-page .resources-grid {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 80px auto; /* 增加上边距，将九个栏目整体下移 */
 }
 
 @media (max-width: 900px) {
