@@ -39,9 +39,26 @@ export default async function PostPage({
 
   if (isLearningResourcesPage) {
     return (
-      <div className="learning-resources-fullpage">
-        <LearningResourcesGrid />
-      </div>
+      <>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.add('learning-resources-page');
+              });
+            `,
+          }}
+        />
+        <style jsx global>{`
+          body.learning-resources-page .global-header,
+          body.learning-resources-page .site-topline {
+            display: none !important;
+          }
+        `}</style>
+        <div className="learning-resources-fullpage">
+          <LearningResourcesGrid />
+        </div>
+      </>
     );
   }
 

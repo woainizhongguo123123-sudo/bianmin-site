@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调试页面 - 检查CSS选择器</title>
+    <style>
+        /* 测试CSS选择器是否有效 */
+        .learning-resources-fullpage ~ .global-header {
+            background: red !important;
+            border: 5px solid yellow !important;
+            color: white !important;
+            font-size: 24px !important;
+            padding: 20px !important;
+        }
+        
+        /* 检查标题栏样式 */
+        .learning-resources-header {
+            background: blue !important;
+            color: white !important;
+            padding: 20px !important;
+            font-size: 24px !important;
+        }
+        
+        /* 检查绝对定位 */
+        .learning-resources-header[style*="position: absolute"],
+        .learning-resources-header[style*="top: 0"] {
+            background: green !important;
+            border: 5px solid lime !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS选择器测试</h1>
+    
+    <div class="global-header">
+        <p>这是模拟的"四海皆兄弟"头部</p>
+    </div>
+    
+    <div class="learning-resources-fullpage">
+        <div class="learning-resources-header">
+            <h1>学习资源</h1>
+        </div>
+        <p>如果上面的头部变成红色，说明CSS选择器有效</p>
+        <p>如果标题栏变成蓝色，说明样式被应用</p>
+        <p>如果标题栏变成绿色，说明绝对定位生效</p>
+    </div>
+    
+    <script>
+        console.log('CSS选择器测试');
+        console.log('1. 检查相邻兄弟选择器: .learning-resources-fullpage ~ .global-header');
+        
+        // 检查CSS选择器
+        const header = document.querySelector('.global-header');
+        const learningPage = document.querySelector('.learning-resources-fullpage');
+        
+        if (header && learningPage) {
+            console.log('找到元素:', {
+                header: header,
+                learningPage: learningPage,
+                isAdjacentSibling: header.previousElementSibling === learningPage
+            });
+        }
+    </script>
+</body>
+</html>

@@ -857,8 +857,8 @@ small {
 }
 
 /* 隐藏学习资源导航页面的全局头部 */
-.learning-resources-fullpage ~ .global-header,
-.learning-resources-fullpage ~ .site-topline {
+.site-root:has(.learning-resources-fullpage) .global-header,
+.site-root:has(.learning-resources-fullpage) .site-topline {
   display: none !important;
 }
 
