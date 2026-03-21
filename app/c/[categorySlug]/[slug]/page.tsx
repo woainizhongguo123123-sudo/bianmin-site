@@ -2,6 +2,7 @@
 import path from "node:path";
 import Link from "next/link";
 import LaborContractTemplateClient from "./labor-contract-template-client";
+import LearningResourcesGrid from "./learning-resources-grid";
 import { getAllPostsMeta, getPostHtml } from "../../../../lib/content";
 
 type StaticParam = { categorySlug: string; slug: string };
@@ -27,6 +28,7 @@ export default async function PostPage({
 
   const isLaborTemplatePage = categorySlug === "work" && slug === "labor-contract-template";
   const isLaborLawPage = categorySlug === "work" && slug === "labor-law-fulltext";
+  const isLearningResourcesPage = categorySlug === "education" && slug === "learning-resources-navigation";
 
   let laborLawHtml = "";
   if (isLaborLawPage) {
@@ -56,6 +58,7 @@ export default async function PostPage({
         ) : (
           <section className="post-shell">
             <article className="post-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+            {isLearningResourcesPage ? <LearningResourcesGrid /> : null}
           </section>
         )}
 

@@ -7,6 +7,9 @@
 
   --font-title: "KaiTi", "STKaiti", "Kaiti SC", "KaiTi_GB2312", "DFKai-SB", serif;
   --font-body: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK SC", "STSong", "SimSun", serif;
+  --font-xingti: "正字迹-邢体草书简体", cursive;
+  --font-kaiti: "KaiTi", "STKaiti", "Kaiti SC", "KaiTi_GB2312", "DFKai-SB", serif;
+  --font-fz-song: "FZSong", "方正宋体", "SimSun", serif;
 
   --w-container: 760px;
 
@@ -196,6 +199,97 @@ small {
   height: 2px;
   background: var(--c-accent);
   margin-top: 10px;
+}
+
+.learning-resources-shell {
+  margin-top: 32px;
+}
+
+.learning-resources-header {
+  background: #c00000;
+  padding: 40px 20px;
+  text-align: center;
+  margin: 40px 0;
+  border-radius: 4px;
+}
+
+.learning-resources-title {
+  font-family: var(--font-xingti);
+  font-size: 2.5rem;
+  color: #ffd700;
+  margin: 0;
+  line-height: 1.2;
+  font-weight: normal;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+}
+
+.resource-card {
+  border: 1px solid var(--c-text);
+  border-radius: 8px;
+  padding: 32px 24px;
+  background: rgba(255, 255, 255, 0.94);
+  text-align: center;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.resource-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.resource-link:hover .resource-card,
+.resource-link:focus-visible .resource-card {
+  border-color: var(--c-accent);
+  background: rgba(192, 0, 0, 0.03);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.resource-title {
+  font-family: var(--font-kaiti);
+  font-size: 1.5rem;
+  margin: 0 0 16px 0;
+  color: var(--c-text);
+  font-weight: 700;
+}
+
+.resource-description {
+  font-family: var(--font-fz-song);
+  font-size: 0.875rem;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1.6;
+}
+
+.coming-soon {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+  font-family: var(--font-body);
+}
+
+@media (max-width: 900px) {
+  .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .home-head {
