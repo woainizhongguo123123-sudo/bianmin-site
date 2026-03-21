@@ -448,6 +448,18 @@ small {
   padding: 18px 18px 22px;
 }
 
+.post-download {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.post-download a {
+  border-bottom: 1px solid var(--c-text);
+  padding-bottom: 2px;
+}
+
 .post-content {
   font-family: var(--font-body);
   font-size: 16px;

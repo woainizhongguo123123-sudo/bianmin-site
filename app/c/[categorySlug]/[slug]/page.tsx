@@ -29,6 +29,7 @@ export default async function PostPage({
   const isLaborTemplatePage = categorySlug === "work" && slug === "labor-contract-template";
   const isLaborLawPage = categorySlug === "work" && slug === "labor-law-fulltext";
   const isLearningResourcesPage = categorySlug === "education" && slug === "learning-resources-navigation";
+  const isLaborRightsProcessPage = categorySlug === "work" && slug === "labor-rights-process";
 
   let laborLawHtml = "";
   if (isLaborLawPage) {
@@ -85,6 +86,14 @@ export default async function PostPage({
             <article className="post-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
           </section>
         )}
+
+        {isLaborRightsProcessPage ? (
+          <div className="post-download">
+            <a href="/downloads/labor-arbitration-application.doc" download="《劳动仲裁申请书》范文.doc">
+              《劳动仲裁申请书》范文.doc
+            </a>
+          </div>
+        ) : null}
 
         {isLaborTemplatePage ? <LaborContractTemplateClient /> : null}
       </div>
