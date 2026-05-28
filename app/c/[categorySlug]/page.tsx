@@ -1,4 +1,5 @@
-﻿import Link from "next/link";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { getCategories, getPostsByCategory } from "../../../lib/content";
 
 type CategoryLite = { categorySlug: string };
@@ -23,7 +24,13 @@ export default async function CategoryPage({
 }) {
   const { categorySlug } = await params;
 
-  const posts = getPostsByCategory(categorySlug) as PostMetaLite[];
+  let posts: PostMetaLite[] = [];
+  try {
+    posts = getPostsByCategory(categorySlug) as PostMetaLite[];
+  } catch {
+    notFound();
+  }
+
   const title = posts[0]?.category ?? categorySlug;
 
   return (
@@ -61,3 +68,4 @@ export default async function CategoryPage({
     </main>
   );
 }
+

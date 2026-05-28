@@ -6,6 +6,7 @@ import PizZip from "pizzip";
 
 type Payload = Record<string, unknown>;
 
+const MAX_BODY_LENGTH = 20_000;
 const MAX_FIELD_LENGTH = 200;
 const MAX_LONG_FIELD_LENGTH = 1000;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
@@ -30,6 +31,40 @@ const WAGE_TYPE_LABEL: Record<string, string> = {
   "4": "其他",
 };
 
+const ALLOWED_FIELDS = new Set([
+  "employer_name",
+  "employer_uscc",
+  "employer_representative",
+  "employer_registered_address",
+  "employer_business_address",
+  "employer_phone",
+  "employee_name",
+  "employee_id",
+  "employee_hukou_address",
+  "employee_contact_address",
+  "employee_phone",
+  "term_type",
+  "start_date",
+  "end_date",
+  "probation_end_date",
+  "position",
+  "job_duties",
+  "work_location",
+  "worktime_type",
+  "worktime_cycle",
+  "wage_type",
+  "monthly_wage",
+  "piece_rate",
+  "base_wage",
+  "performance_rule",
+  "wage_other",
+  "probation_wage",
+  "payday",
+  "sign_date",
+  "employer_sign_date",
+  "employee_sign_date",
+]);
+
 function cleanString(value: unknown, max = MAX_FIELD_LENGTH): string {
   const text = String(value ?? "").trim();
   if (text.length > max) return text.slice(0, max);
@@ -46,6 +81,12 @@ function encodeFileName(fileName: string): string {
 }
 
 function validate(payload: Payload) {
+  for (const key of Object.keys(payload)) {
+    if (!ALLOWED_FIELDS.has(key)) {
+      throw new Error(`未知字段: ${key}`);
+    }
+  }
+
   const data = {
     employer_name: cleanString(payload.employer_name),
     employer_uscc: cleanString(payload.employer_uscc),
@@ -151,7 +192,16 @@ function validate(payload: Payload) {
 
 export async function POST(request: Request) {
   try {
-    const payload = (await request.json()) as Payload;
+    const bodyText = await request.text();
+    if (bodyText.length > MAX_BODY_LENGTH) {
+      return NextResponse.json({ error: "请求体过大" }, { status: 413 });
+    }
+
+    const payload = JSON.parse(bodyText) as Payload;
+    if (typeof payload !== "object" || payload === null || Array.isArray(payload)) {
+      return NextResponse.json({ error: "请求格式不正确" }, { status: 400 });
+    }
+
     const { errors, data } = validate(payload);
 
     if (errors.length > 0) {
@@ -187,10 +237,17 @@ export async function POST(request: Request) {
       },
     });
   } catch (error) {
+    const message = error instanceof Error ? error.message : "unknown";
+    if (message.includes("Unexpected token")) {
+      return NextResponse.json({ error: "请求格式不正确" }, { status: 400 });
+    }
+    if (message.startsWith("未知字段:")) {
+      return NextResponse.json({ error: message }, { status: 400 });
+    }
+
     return NextResponse.json(
       {
         error: "生成失败，请检查输入并重试",
-        detail: error instanceof Error ? error.message : "unknown",
       },
       { status: 500 },
     );

@@ -204,6 +204,12 @@ export default function LaborContractTemplateClient() {
       });
 
       if (!response.ok) {
+        const contentType = response.headers.get("content-type") ?? "";
+        if (contentType.includes("application/json")) {
+          const data = (await response.json().catch(() => null)) as { error?: string; detail?: string } | null;
+          throw new Error(data?.error || data?.detail || "生成失败");
+        }
+
         const text = await response.text();
         throw new Error(text || "生成失败");
       }
